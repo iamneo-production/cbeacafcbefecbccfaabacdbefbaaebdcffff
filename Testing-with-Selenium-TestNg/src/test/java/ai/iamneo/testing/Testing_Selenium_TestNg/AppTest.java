@@ -9,9 +9,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class AppTest {
 
@@ -19,42 +16,48 @@ public class AppTest {
 	WebDriver driver = null;
 
 	@BeforeTest
-	public void beforeTest() throws Exception {
-		
+	public void beforeTest() throws Exception
+	 {
 		driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
 	}
 
 	@Test
-	public void testcase_1() throws InterruptedException //Go to Ebay
+//Checking the title of iamNeo (Home - iamneo)
+	public void iamNeo() throws InterruptedException 
 	{
-		driver.navigate().to("https://www.flipkart.com/");
-		driver.findElement(By.xpath("/html/body/div[2]/div/div/button")).click();
-		//String title = "Get the Title";
-		//Assert.assertEquals(title, " ");
-	}
 
+		 String title ="Get your title";
+		Assert.assertEquals(title, "");
+	}
 	@Test
-	public void testcase_2() throws InterruptedException 
-      {
-	       //write Your Code here to Login
-             /*int nlinks=10;//   //Get the Number of links
-		 int get = 0;*/
-		 List<WebElement> links=driver.findElements(By.tagName("a"));
-		 int get=links.size();
-		//System.out.println(get);// 368
-		Assert.assertEquals(get,368);
-		String allText=driver.findElement(By.xpath("//body")).getText();
-		System.out.println(allText);
-		for(WebElement linktotal:links)
-		{
-			System.out.println(linktotal.getText());
-		}
+//Moving to FACEBOOK
+	public void nextPage() throws InterruptedException 
+	{
+		 	
+		 String title ="Get your title";
+		Assert.assertEquals(title, "");
 
 	}
+	@Test
+//Back to iamNeo
+	public void backPage() throws InterruptedException 
+	{
+		 String title ="Get your title";
+		Assert.assertEquals(title, "");
 
-		
+	}
+	@Test
+//Current URL
+public void currentURL() throws InterruptedException 
+{
+		 String title ="Get your title";
+		Assert.assertEquals(title, "");
+
+}
+
 	@AfterTest
-	public void afterTest() {
+	public void afterTest() 
+	{
 		driver.quit();
 	}
 

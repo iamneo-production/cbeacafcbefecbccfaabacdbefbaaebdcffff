@@ -9,6 +9,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class AppTest {
 
@@ -16,48 +19,42 @@ public class AppTest {
 	WebDriver driver = null;
 
 	@BeforeTest
-	public void beforeTest() throws Exception
-	 {
-		driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+	public void beforeTest() throws Exception {
+		
+		driver = new RemoteWebDriver(new URL("http://localhost:8080"), chromeOptions);
 	}
 
 	@Test
-//Checking the title of iamNeo (Home - iamneo)
-	public void iamNeo() throws InterruptedException 
+	public void testcase_1() throws InterruptedException //Go to Ebay
 	{
-
-		 String title ="Get your title";
-		Assert.assertEquals(title, "");
+		driver.navigate().to("https://www.flipkart.com/");
+		driver.findElement(By.xpath("/html/body/div[2]/div/div/button")).click();
+		//String title = "Get the Title";
+		//Assert.assertEquals(title, " ");
 	}
+
 	@Test
-//Moving to FACEBOOK
-	public void nextPage() throws InterruptedException 
-	{
-		 	
-		 String title ="Get your title";
-		Assert.assertEquals(title, "");
+	public void testcase_2() throws InterruptedException 
+      {
+	       //write Your Code here to Login
+             /*int nlinks=10;//   //Get the Number of links
+		 int get = 0;*/
+		 List<WebElement> links=driver.findElements(By.tagName("a"));
+		 int get=links.size();
+		//System.out.println(get);// 368
+		Assert.assertEquals(get,368);
+		String allText=driver.findElement(By.xpath("//body")).getText();
+		System.out.println(allText);
+		for(WebElement linktotal:links)
+		{
+			System.out.println(linktotal.getText());
+		}
 
 	}
-	@Test
-//Back to iamNeo
-	public void backPage() throws InterruptedException 
-	{
-		 String title ="Get your title";
-		Assert.assertEquals(title, "");
 
-	}
-	@Test
-//Current URL
-public void currentURL() throws InterruptedException 
-{
-		 String title ="Get your title";
-		Assert.assertEquals(title, "");
-
-}
-
+		
 	@AfterTest
-	public void afterTest() 
-	{
+	public void afterTest() {
 		driver.quit();
 	}
 
